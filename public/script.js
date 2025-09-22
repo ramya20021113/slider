@@ -40,35 +40,67 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   ];
 
-function showSlide(index) {
-  if (index === currentSlide) return;
+  function showSlide(index) {
+    if (index === currentSlide) return; // prevent duplicate clicks
 
-  // Remove any previous active/exit classes
-  slides.forEach((slide) => slide.classList.remove("active", "exit"));
+    const current = slides[currentSlide];
+    const next = slides[index];
 
-  // Start exit animation for current slide
-  slides[currentSlide].classList.add("exit");
+    // Mark current slide as exiting
+    current.classList.add("exit");
 
-  // Show next slide immediately
-  slides[index].classList.add("active");
+    // When exit animation ends → hide current and show next
+    current.addEventListener(
+      "animationend",
+      () => {
+        current.classList.remove("active", "exit");
+        next.classList.add("active");
+        navDots.forEach((dot) => dot.classList.remove("active"));
+        navDots[index].classList.add("active");
 
-  // Update nav dots
-  navDots.forEach((dot) => dot.classList.remove("active"));
-  navDots[index].classList.add("active");
+        updateCoffeeContent(index);
+        currentSlide = index;
+      },
+      { once: true }
+    );
+  }
 
-  // Update currentSlide index
-  currentSlide = index;
-}
+  //content
 
+  function updateCoffeeContent(index) {
+    const items = document.querySelectorAll(".coffee-content");
+    items.forEach((item, i) => {
+      item.style.display = "none";
+      item.classList.remove("animate"); // reset
+    });
 
-
+    const current = items[index];
+    current.style.display = "flex";
+    void current.offsetWidth; // force reflow
+    current.classList.add("animate"); // triggers animation
+  }
 
   // Nav dots click
-  navDots.forEach((dot, index) => {
-    dot.addEventListener("click", () => {
-      showSlide(index);
-    });
-  });
+ navDots.forEach((dot, index) => {
+   dot.addEventListener("click", () => {
+     showSlide(index);
+   });
+ });
+
+ // Trigger initial animation
+ triggerNavAnimation();
+
+ // Hide nav dots after 2 seconds
+ const navigation = document.querySelector(".navigation");
+ setTimeout(() => {
+   // Add fade-out effect
+   navigation.style.opacity = "0";
+   navigation.style.pointerEvents = "none"; // optional: disable clicks
+ }, 2000);
+  
+
+
+  
 
   // Arrows
   if (prevArrow) {
@@ -141,20 +173,6 @@ function showSlide(index) {
     });
   });
 
-  // -------------------------
-  // NAV DOT POP-IN ANIMATION
-  // -------------------------
-  function triggerNavAnimation() {
-    navDots.forEach((dot) => {
-      dot.style.animation = "none"; // reset
-      dot.offsetHeight; // trigger reflow
-      dot.style.animation = ""; // re-apply CSS animation
-    });
-  }
-
-  // Trigger animation on page load
-  triggerNavAnimation();
-
   // Trigger animation when home section comes into view
   const homeSection = document.querySelector("#home");
   if (homeSection) {
@@ -171,8 +189,7 @@ function showSlide(index) {
     observer.observe(homeSection);
   }
 
-  // -------------------------
-  // Initialize slider
-  // -------------------------
-  showSlide(0);
+
+  
+   
 });

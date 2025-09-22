@@ -301,7 +301,7 @@ body {
 
   /* Start position offscreen left */
   left: -100px;
-  transition: all 2s ease-in-out;
+  
 }
 
 /* After page load or JS trigger, move to final position */
@@ -407,11 +407,11 @@ body {
 /* Apply animation to beans */
 
 .bean1,.bean2, .bean33, .bean22 {
-  animation: beanSlideIn 2s ease-out forwards; /* 3 seconds total */
+  animation: beanSlideIn 2.2s ease-out forwards; /* 3 seconds total */
 }
 
 .bean3{
-  animation: beenSlideIn 2s ease-out forwards;
+  animation: beenSlideIn 2.2s ease-out forwards;
 }
 
 
@@ -827,7 +827,7 @@ body {
 /* Animation keyframes for smooth rotation */
 @keyframes elementSlideIn {
   0% {
-    transform: translateY(-100%) rotate(-65);
+    transform: translateY(-100%) rotate(-45) scale(1);
     opacity: 0;
   }
   100% {
@@ -852,7 +852,7 @@ body {
     opacity: 0.9;
   }
   50% {
-    transform: translateY(-8px) rotate(2deg);
+    transform: translateY(-8px) rotate(2deg) ;
     opacity: 1;
   }
 }
@@ -864,7 +864,7 @@ body {
 .cup1, .cup2, .cup3, .cup4, .cup5,
 .leaf1, .leaf2, .leaf3, .leaf4, .leaf5,
 .shadow { 
-  animation: elementSlideIn 2s ease-out forwards, elementFloat 2s ease-in-out infinite 2s;
+  animation: elementSlideIn 2s ease-out forwards;
 
 }
 
@@ -904,11 +904,11 @@ body {
 .slide.exit .bean2,
 .slide.exit .bean22,
 .slide.exit .bean33 {
-  animation: beanSlideOut 1.5s ease forwards;
+  animation: beanSlideOut 2s ease forwards;
 }
 
 .slide.exit .bean3 {
-  animation: beenSlideOut 1.5s ease forwards;
+  animation: beenSlideOut 2s ease forwards;
 }
 
 
@@ -1073,13 +1073,38 @@ body {
 /* Right Panel Styling */
 .coffee-content {
   padding: 100px;
+  top: 150px;
   width: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start; /* align to top */
   font-family: "Roboto", sans-serif;
   height: 100%;
+  
+}
+
+
+
+
+.coffee-number { animation: numberSlideIn 1s ease-out forwards; }
+.coffee-title { animation: titleSlideIn 1s ease-out forwards ; }
+.coffee-description { animation: descriptionFadeIn 1s ease-out forwards ; }
+.order-btn { animation: descriptionFadeIn 1s ease-out forwards; }
+
+@keyframes numberSlideIn {
+  0% { opacity: 0; transform: translateY(200px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes titleSlideIn {
+  0% { opacity: 0; transform: translateY(200px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes descriptionFadeIn {
+  0% { opacity: 0; transform: translateY(200px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 /* Number 01 / 05 */
@@ -1214,186 +1239,10 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
-.coffee-number {
-  animation: titleSlideIn 1s ease-out forwards 0s;
-}
-
-.coffee-title {
-  animation: titleSlideIn 1s ease-out forwards 0.3s;
-}
-
-.coffee-description {
-  animation: descriptionFadeIn 1s ease-out forwards 0.6s;
-}
-
-.order-btn {
-  animation: descriptionFadeIn 1s ease-out forwards 0.9s;
-}
-@keyframes descriptionFadeIn {
-  0% { opacity: 0; transform: translateY(50px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes titleSlideIn {
-  0% { opacity: 0; transform: translateY(50px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
 
 
 
 
-/* Number 01 / 05 */
-.coffee-number1 {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  position: relative;
-  margin: 20px 0 20px 0;
-  animation: titleSlideIn 1s ease-out forwards;
-}
-
-.coffee-number1 .num {
-  font-family: Roboto;
-  font-size: 18px;
-  font-weight: 100;
-  line-height: 27px;
-  color: rgb(71, 70, 69);
-  text-transform: none;
-  text-decoration: none;
-  letter-spacing: 0px;
-  text-align: left;
-  white-space: normal;
-  overflow: visible;
-  margin: 0;
-  padding: 0px;
-  width: auto;
-  height: auto;
-  float: none;
-  clear: none;
-  z-index: 5;
-  position: relative;
-  vertical-align: inherit;
-  transform-origin: 50% 50%;
-  display: inline-block;
-  background: transparent;
-}
-
-.coffee-number1 .num1 {
-  font-family: Roboto;
-  font-size: 18px;
-  font-weight: 100;
-  line-height: 27px;
-  color: rgb(71, 70, 69);
-  text-transform: none;
-  text-decoration: none;
-  letter-spacing: 0px;
-  text-align: left;
-  white-space: normal;
-  overflow: visible;
-  padding: 0px;
-  width: auto;
-  height: auto;
-  float: none;
-  clear: none;
-  z-index: 7;
-  position: relative;
-  vertical-align: inherit;
-  transform-origin: 50% 50%;
-  display: inline-block;
-  background: transparent;
-  transform: translateY(30px);
-  margin: -6px 0px 0px -15px;
-}
-
-.coffee-number1 .separator {
-  background: rgb(190, 152, 109);
-  overflow: visible;
-  width: 1px;
-  height: 50px;
-  float: none;
-  clear: none;
-  z-index: 6;
-  position: relative;
-  opacity: 1;
-  vertical-align: inherit;
-  display: inline-block;
-  visibility: inherit;
-  align-items: left;
-  transform: rotate(50deg);
-  margin: 0px 8px 0px -5px;
-  transform-origin: center;
-}
-
-/* Coffee Title */
-.coffee-title1 {
-  font-family: "Playfair Display", serif;
-  font-size: 47px;
-  font-weight: 700;
-  color: rgb(36, 33, 32);
-  line-height: 47px;
-  animation: titleSlideIn 1s ease-out forwards;
-}
-
-/* Coffee Description */
-.coffee-description1 {
-  font-family: Roboto;
-  font-size: 17px;
-  font-weight: 100;
-  line-height: 27px;
-  color: rgb(71, 70, 69);
-  margin: 28px 0 38px 0;
-  max-width: 500px;
-  animation: descriptionFadeIn 1s ease-out forwards;
-}
-
-/* Order Button */
-.order-btn1 {
-  font-family: "Roboto", sans-serif;
-  font-size: 11px;
-  font-weight: bold;
-  letter-spacing: 2.8px;
-  text-transform: uppercase;
-  text-align: center;
-  color: #000;
-  background: rgb(190, 152, 109);
-  padding: 8px 0;
-  width: 175px;
-  height: 43px;
-  border: none;
-  border-radius: 0;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: block;
-  margin: 20px 0;
-  animation: descriptionFadeIn 1s ease-out forwards;
-}
-
-.order-btn1:hover {
-  background: black;
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-@keyframes descriptionFadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(600px) ; /* slight upward movement */
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0); /* final resting position */
-  }
-}
-@keyframes titleSlideIn {
-  0% {
-    opacity: 0;
-    transform: translateY(600px) ; /* slight upward movement */
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0); /* final resting position */
-  }
-}
 
 
 
@@ -1484,6 +1333,8 @@ body {
   gap: 5px;
   z-index: 1000;
   opacity: 1;
+   pointer-events: auto;     /* clickable */
+  transition: opacity 0.5s ease;
 }
 
 .nav-dot {
@@ -1501,7 +1352,8 @@ body {
 
   position: relative;
   transition: all 0.3s ease;
-  animation: navPopIn 1s ease forwards;
+  
+  animation: navPopIn 2s ease forwards;
   overflow: hidden;
 }
 @keyframes navPopIn {
@@ -1509,10 +1361,7 @@ body {
     transform: scale(0);
     opacity: 0;
   }
-  70% {
-    transform: scale(0);
-    opacity: 1;
-  }
+  
   100% {
     transform: scale(0.7); /* final resting size */
     opacity: 1;
@@ -1523,6 +1372,12 @@ body {
 .nav-dot:hover {
   transform: scale(0.8);
   border: 5px solid white;
+}
+
+.navigation:hover .nav-dot {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transition: opacity 2s ease;
 }
 
 .nav-dot.active {
