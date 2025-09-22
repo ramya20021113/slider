@@ -40,30 +40,28 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   ];
 
-  // Show specific slide
-  function showSlide(index) {
-    slides.forEach((slide) => slide.classList.remove("active"));
-    navDots.forEach((dot) => dot.classList.remove("active"));
+function showSlide(index) {
+  if (index === currentSlide) return;
 
-    slides[index].classList.add("active");
-    navDots[index].classList.add("active");
+  // Remove any previous active/exit classes
+  slides.forEach((slide) => slide.classList.remove("active", "exit"));
 
-    updateCoffeeContent(index);
-    currentSlide = index;
-  }
+  // Start exit animation for current slide
+  slides[currentSlide].classList.add("exit");
 
-  // Update coffee content dynamically
-  function updateCoffeeContent(index) {
-    const coffeeTitle = document.querySelector(".coffee-title");
-    const coffeeDescription = document.querySelector(".coffee-description");
-    const coffeeNumber = document.querySelector(".coffee-number .num");
+  // Show next slide immediately
+  slides[index].classList.add("active");
 
-    if (coffeeTitle && coffeeDescription && coffeeNumber && coffeeData[index]) {
-      coffeeTitle.textContent = coffeeData[index].title;
-      coffeeDescription.textContent = coffeeData[index].description;
-      coffeeNumber.textContent = coffeeData[index].number;
-    }
-  }
+  // Update nav dots
+  navDots.forEach((dot) => dot.classList.remove("active"));
+  navDots[index].classList.add("active");
+
+  // Update currentSlide index
+  currentSlide = index;
+}
+
+
+
 
   // Nav dots click
   navDots.forEach((dot, index) => {
