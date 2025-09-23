@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const slides = document.querySelectorAll(".slide");
   const navDots = document.querySelectorAll(".nav-dot");
-  const prevArrow = document.querySelector(".arrow.prev");
-  const nextArrow = document.querySelector(".arrow.next");
 
   let currentSlide = 0;
 
@@ -40,97 +38,110 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   ];
 
-  function showSlide(index) {
-    if (index === currentSlide) return; // prevent duplicate clicks
+ function showSlide(index) {
+   if (index === currentSlide) return; // prevent duplicate clicks
 
-    const current = slides[currentSlide];
-    const next = slides[index];
+   const current = slides[currentSlide];
+   const next = slides[index];
 
-    // Mark current slide as exiting
-    current.classList.add("exit");
+   // Exit current slide
+   current.classList.add("exit");
 
-    // When exit animation ends → hide current and show next
-    current.addEventListener(
-      "animationend",
-      () => {
-        current.classList.remove("active", "exit");
-        next.classList.add("active");
-        navDots.forEach((dot) => dot.classList.remove("active"));
-        navDots[index].classList.add("active");
+   current.addEventListener(
+     "animationend",
+     () => {
+       // Hide current slide
+       current.classList.remove("active", "exit");
 
-        updateCoffeeContent(index);
-        currentSlide = index;
-      },
-      { once: true }
-    );
-  }
+       // Show next slide immediately
+       next.classList.add("active");
+       navDots.forEach((dot) => dot.classList.remove("active"));
+       navDots[index].classList.add("active");
+
+       updateCoffeeContent(index);
+       currentSlide = index;
+
+       // Animate right-side elements slowly (1s)
+       animateRightElements(next, 3); // pass duration in seconds
+     },
+     { once: true }
+   );
+ }
+
+ 
+
+
+  //next pre
+  // Select arrows
+  const prevArrow = document.querySelector(".arrow.prev");
+  const nextArrow = document.querySelector(".arrow.next");
+
+  // Prev arrow click
+  prevArrow.addEventListener("click", (e) => {
+    e.preventDefault();
+    const prevIndex = currentSlide === 0 ? slides.length - 1 : currentSlide - 1;
+    showSlide(prevIndex); // calls your existing showSlide
+  });
+
+  // Next arrow click
+  nextArrow.addEventListener("click", (e) => {
+    e.preventDefault();
+    const nextIndex = currentSlide === slides.length - 1 ? 0 : currentSlide + 1;
+    showSlide(nextIndex); // calls your existing showSlide
+  });
 
   //content
 
-  function updateCoffeeContent(index) {
-    const items = document.querySelectorAll(".coffee-content");
-    items.forEach((item, i) => {
-      item.style.display = "none";
-      item.classList.remove("animate"); // reset
-    });
+function updateCoffeeContent(index) {
+  const items = document.querySelectorAll(".coffee-content");
+  items.forEach((item) => {
+    item.style.display = "none";
+    // Reset animations
+    const number = item.querySelector(".coffee-number");
+    const title = item.querySelector(".coffee-title");
+    const description = item.querySelector(".coffee-description");
+    const btn = item.querySelector(".order-btn");
 
-    const current = items[index];
-    current.style.display = "flex";
-    void current.offsetWidth; // force reflow
-    current.classList.add("animate"); // triggers animation
-  }
+    [number, title, description, btn].forEach((el) => {
+      if (el) {
+        el.style.animation = "none"; // reset
+        void el.offsetWidth; // force reflow
+        // reapply animation
+        if (el.classList.contains("coffee-number"))
+          el.style.animation = "numberSlideIn 1s ease-out forwards";
+        if (el.classList.contains("coffee-title"))
+          el.style.animation = "titleSlideIn 1s ease-out forwards";
+        if (el.classList.contains("coffee-description"))
+          el.style.animation = "descriptionFadeIn 1s ease-out forwards";
+        if (el.classList.contains("order-btn"))
+          el.style.animation = "descriptionFadeIn 1s ease-out forwards";
+      }
+    });
+  });
+
+  // Show current slide
+  const current = items[index];
+  current.style.display = "flex";
+}
+
 
   // Nav dots click
- navDots.forEach((dot, index) => {
-   dot.addEventListener("click", () => {
-     showSlide(index);
-   });
- });
-
- // Trigger initial animation
- triggerNavAnimation();
-
- // Hide nav dots after 2 seconds
- const navigation = document.querySelector(".navigation");
- setTimeout(() => {
-   // Add fade-out effect
-   navigation.style.opacity = "0";
-   navigation.style.pointerEvents = "none"; // optional: disable clicks
- }, 2000);
-  
-
-
-  
-
-  // Arrows
-  if (prevArrow) {
-    prevArrow.addEventListener("click", () => {
-      const prevIndex =
-        currentSlide === 0 ? slides.length - 1 : currentSlide - 1;
-      showSlide(prevIndex);
+  navDots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      showSlide(index);
     });
-  }
-
-  if (nextArrow) {
-    nextArrow.addEventListener("click", () => {
-      const nextIndex =
-        currentSlide === slides.length - 1 ? 0 : currentSlide + 1;
-      showSlide(nextIndex);
-    });
-  }
-
-  // Keyboard navigation
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowLeft") {
-      const prevIndex =
-        currentSlide === 0 ? slides.length - 1 : currentSlide - 1;
-      showSlide(prevIndex);
-    } else if (e.key === "ArrowRight") {
-      const nextIndex =
-        currentSlide === slides.length - 1 ? 0 : currentSlide + 1;
-      showSlide(nextIndex);
-    }
   });
+
+  // Trigger initial animation
+  triggerNavAnimation();
+
+  // Hide nav dots after 2 seconds
+  const navigation = document.querySelector(".navigation");
+  setTimeout(() => {
+    // Add fade-out effect
+    navigation.style.opacity = "0";
+    navigation.style.pointerEvents = "none"; // optional: disable clicks
+  }, 2000);
 
   // Touch/swipe for mobile
   let startX = 0;
@@ -188,8 +199,4 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     observer.observe(homeSection);
   }
-
-
-  
-   
 });
