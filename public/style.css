@@ -264,7 +264,7 @@ body {
 
 /* Apply to both bean symbol and text SVG */
 .combined-logo {
-  width: 250px;
+  width: 220px;
   height: auto;
   fill: #1b0d0a;
 }
@@ -272,7 +272,7 @@ body {
 .stext {
   position: absolute;
   top: 95%; 
-  left: 144px; 
+  left: 55px; 
   transform: rotate(-90deg) translateY(-50%);
   transform-origin: left top;
 
@@ -987,6 +987,7 @@ body {
 
 
 
+
 /* Background slide animation */
 @keyframes bgSlideDown {
   0% {
@@ -1138,7 +1139,7 @@ body {
   font-size: 18px;
   font-weight: 100;
   line-height: 27px;
-  color: rgb(71, 70, 69);
+ color: rgb(82, 82, 81);
   text-transform: none;
   text-decoration: none;
   letter-spacing: 0px;
@@ -1191,11 +1192,11 @@ body {
 
 /* Coffee Description */
 .coffee-description {
-  font-family: Roboto;
-  font-size: 17px;
-  font-weight: 100;
-  line-height: 27px;
-  color: rgb(71, 70, 69);
+  font-family: "roboto";
+  font-size: 16.5px;
+  font-weight: 300;
+  line-height: 20px;
+  color: rgb(82, 82, 81);
   margin: 28px 0 38px 0;
   max-width: 500px;
   
@@ -1212,7 +1213,7 @@ body {
   color: #000;
   background: rgb(190, 152, 109);
   padding: 8px 0;
-  width: 175px;
+  width: 165px;
   height: 43px;
   border: none;
   border-radius: 0;
@@ -1298,7 +1299,7 @@ body {
   height: 100vh;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.8s ease;
+  transition: opacity 1s ease;
 }
 
 .slide.active {
@@ -1334,10 +1335,10 @@ body {
 
   background-size: cover;
   background-position: center;
-
+  box-shadow: inset 5px 5px 10px 0px rgba(0, 0, 0, 0.25);
   cursor: pointer;
 
-  transform: scale(0.7);
+  transform: scale(0);
   /* start invisible */
 
   position: relative;
@@ -1345,6 +1346,8 @@ body {
   
   animation: navPopIn 2s ease forwards;
   overflow: hidden;
+
+ 
 }
 @keyframes navPopIn {
   0% {
@@ -1360,19 +1363,19 @@ body {
 
 /* Hover effect */
 .nav-dot:hover {
-  transform: scale(0.8);
-  border: 5px solid white;
+  transform: scale(0.9);
+  border: 5px solid #e7e1d9 ;
 }
 
 .navigation:hover .nav-dot {
   opacity: 1 !important;
   pointer-events: auto !important;
-  transition: opacity 2s ease;
+  transition: opacity 1s ease;
 }
 
 .nav-dot.active {
-  border-color: white;
-  border: 5px solid white;
+  border-color: #e7e1d9;
+  border: 5px solid #e7e1d9;
 }
 .nav-dot:nth-child(1) { animation-delay: 0.5s; }
 .nav-dot:nth-child(2) { animation-delay: 0.5s; }

@@ -125,6 +125,13 @@ function updateCoffeeContent(index) {
 }
 
 
+
+
+//nav
+
+
+
+
   // Nav dots click
   navDots.forEach((dot, index) => {
     dot.addEventListener("click", () => {
