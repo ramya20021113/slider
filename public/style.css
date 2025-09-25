@@ -228,7 +228,7 @@ body {
 
 
 
-.slide.active .left-panel1 { animation: leftPanelSlideIn 1.2s ease forwards; }
+ .left-panel1 { animation: leftPanelSlideIn 1.2s ease forwards; }
 
 
 
@@ -318,7 +318,8 @@ body {
   background: url("https://www.sliderrevolution.com/wp-content/uploads/revslider/coffee-flavours/bean1.png")
     center/cover no-repeat;
   z-index: 18;
-  transition: left 2s ease-out, opacity 1s ease-in;
+  transition: left 1.5s ease-out, top 1.5s ease-out, transform 1.5s ease-out;
+
 
 }
 
@@ -330,7 +331,7 @@ body {
   background: url("https://www.sliderrevolution.com/wp-content/uploads/revslider/coffee-flavours/bean2.png")
     center/contain no-repeat;
   z-index: 17;
-  transition: left 2s ease-out, opacity 1s ease-in;
+  transition: left 1.5s ease-out, top 1.5s ease-out, transform 1.5s ease-out;
 
 }
 
@@ -341,7 +342,7 @@ body {
   height: 36px;
   background: url("img/bean3.png") center/cover no-repeat;
   z-index: 16;
-  transition: left 2s ease-out, opacity 1s ease-in;
+  transition: left 1.5s ease-out, top 1.5s ease-out, transform 1.5s ease-out;
 
 }
 
@@ -353,7 +354,8 @@ body {
   background: url("https://www.sliderrevolution.com/wp-content/uploads/revslider/coffee-flavours/bean2.png")
     center/contain no-repeat;
   z-index: 19;
-  transition: left 2s ease-out, opacity 1s ease-in;
+  transition: left 1.5s ease-out, top 1.5s ease-out, transform 1.5s ease-out;
+
 
 }
 
@@ -365,45 +367,34 @@ body {
   background: url("https://www.sliderrevolution.com/wp-content/uploads/revslider/coffee-flavours/bean3.png")
     center/cover no-repeat;
   z-index: 21;
-  transition: left 2s ease-out, opacity 1s ease-in;
+  transition: left 1.5s ease-out, top 1.5s ease-out, transform 1.5s ease-out;
+
 
 }
 
 /*animation*/
 /* Bean Animation Keyframes - Slower and Smoother */
 @keyframes beanSlideIn {
-  0% {
-    left: -100px;
-    top: 800px;
-    opacity: 0;
-    transform: rotate(45deg) scale(1);
-  }
-  50% {
-    opacity: 0.7;
-    transform: rotate(45deg) scale(1);
-  }
-  100% {
-    opacity: 1;
-    transform: rotate(45deg) scale(1);
-  }
-}
+   0% { left: -100px; 
+    top: 800px; opacity: 0; 
+    transform: rotate(45deg) scale(1); } 
 
-@keyframes beenSlideIn {
-  0% {
+  
+100% { opacity: 1;
+   transform: rotate(45deg) scale(1); 
+  } } 
+
+  
+@keyframes beenSlideIn { 
+  0% { 
     left: -110px;
-    top: 300px;
-    opacity: 0;
-    transform: rotate(45deg) scale(1);
-  }
-  50% {
-    opacity: 0.7;
-    transform: rotate(45deg) scale(1);
-  }
-  100% {
+     top: 300px; 
+    opacity: 0; transform: rotate(45deg) scale(1); }
+    
+  100% { 
     opacity: 1;
-    transform: rotate(45deg) scale(1);
-  }
-}
+     transform: rotate(45deg) scale(1); } }
+
 
 
 
@@ -412,11 +403,13 @@ body {
 /* Apply animation to beans */
 
 .bean1,.bean2, .bean33, .bean22 {
-  animation: beanSlideIn 1.5s ease-out forwards; /* 3 seconds total */
+  
+  animation: beanSlideIn 2s ease-out forwards; /* 3 seconds total */
 }
 
 .bean3{
-  animation: beenSlideIn 1.5s ease-out forwards;
+  
+  animation: beenSlideIn 2s ease-out forwards;
 }
 
 
@@ -445,7 +438,8 @@ body {
   opacity: 1;
   pointer-events: auto;
   /* Animation properties */
-  transition: all 1.2s ease-out;
+ transition: left 1.5s ease-out, top 1.5s ease-out, transform 1.5s ease-out;
+
   /* Start position from top with rotation */
   transform:translateY(-100%) rotate(-65deg);
 }
@@ -469,7 +463,8 @@ body {
   opacity: 1;
   pointer-events: auto;
   /* Animation properties */
-  transition: all 1.2s ease-out;
+  transition: left 1.5s ease-out, top 1.5s ease-out, transform 1.5s ease-out;
+
   /* Start position from top with rotation */
   transform: translateY(-100%) rotate(-65deg);
 }
@@ -493,7 +488,8 @@ body {
   overflow: visible;
   pointer-events: none; /* prevents blocking mouse clicks */
   /* Animation properties */
-  transition: all 1.2s ease-out;
+ transition: left 1.5s ease-out, top 1.5s ease-out, transform 1.5s ease-out;
+
   /* Start position from top with rotation */
   transform:translateY(-100%) rotate(-65deg);
 }
@@ -520,7 +516,8 @@ body {
   opacity: 1;
   pointer-events: auto;
   /* Animation properties */
-  transition: all 1.2s ease-out;
+  transition: left 1.5s ease-out, top 1.5s ease-out, transform 1.5s ease-out;
+
   /* Start position from top with rotation */
   transform:translateY(-100%) rotate(-65deg);
 }
@@ -544,7 +541,8 @@ body {
   opacity: 1;
   pointer-events: auto;
   /* Animation properties */
-  transition: all 1.2s ease-out;
+  transition: left 1.5s ease-out, top 1.5s ease-out, transform 1.5s ease-out;
+
   /* Start position from top with rotation */
   transform:translateY(-100%) rotate(-65deg);
 }
@@ -568,7 +566,8 @@ body {
   overflow: visible;
   pointer-events: none; /* prevents blocking mouse clicks */
   /* Animation properties */
-  transition: all 1.2s ease-out;
+  transition: left 1.5s ease-out, top 1.5s ease-out, transform 1.5s ease-out;
+
   /* Start position from top with rotation */
   transform:translateY(-100%) rotate(-65deg);
 }
@@ -594,7 +593,8 @@ body {
   opacity: 1;
   pointer-events: auto;
   /* Animation properties */
-  transition: all 1.2s ease-out;
+ transition: left 1.5s ease-out, top 1.5s ease-out, transform 1.5s ease-out;
+
   /* Start position from top with rotation */
   transform: translateY(-100%) rotate(-65deg);
 }
@@ -618,7 +618,8 @@ body {
   opacity: 1;
   pointer-events: auto;
   /* Animation properties */
-  transition: all 1.2s ease-out;
+  transition: left 1.5s ease-out, top 1.5s ease-out, transform 1.5s ease-out;
+
   /* Start position from top with rotation */
   transform:translateY(-100%) rotate(-65deg);
 }
@@ -642,7 +643,8 @@ body {
   overflow: visible;
   pointer-events: none; /* prevents blocking mouse clicks */
   /* Animation properties */
-  transition: all 1.2s ease-out;
+  transition: left 1.5s ease-out, top 1.5s ease-out, transform 1.5s ease-out;
+
   /* Start position from top with rotation */
   transform:translateY(-100%) rotate(-65deg);
 }
@@ -667,7 +669,8 @@ body {
   opacity: 1;
   pointer-events: auto;
   /* Animation properties */
-  transition: all 1.2s ease-out;
+  transition: left 1.5s ease-out, top 1.5s ease-out, transform 1.5s ease-out;
+
   /* Start position from top with rotation */
   transform:translateY(-100%) rotate(-65deg);
 }
@@ -691,7 +694,8 @@ body {
   opacity: 1;
   pointer-events: auto;
   /* Animation properties */
-  transition: all 1.2s ease-out;
+  transition: left 1.5s ease-out, top 1.5s ease-out, transform 1.5s ease-out;
+
   /* Start position from top with rotation */
   transform:translateY(-100%) rotate(-65deg);
 }
@@ -721,7 +725,8 @@ body {
     transform: translate(0, 0); /* Add rotate/scale if needed */
     visibility: visible;
     opacity: 1;
-  transition: all 1.2s ease-out;
+  transition: left 1.5s ease-out, top 1.5s ease-out, transform 1.5s ease-out;
+
   /* Start position from top with rotation */
   transform:translateY(-100%) rotate(-65deg);
 }
@@ -747,7 +752,8 @@ body {
   opacity: 1;
   pointer-events: auto;
   /* Animation properties */
-  transition: all 1.2s ease-out;
+ transition: left 1.5s ease-out, top 1.5s ease-out, transform 1.5s ease-out;
+
   /* Start position from top with rotation */
   transform:translateY(-100%) rotate(-65deg);
 }
@@ -771,7 +777,8 @@ body {
   opacity: 1;
   pointer-events: auto;
   /* Animation properties */
-  transition: all 1.2s ease-out;
+  transition: left 1.5s ease-out, top 1.5s ease-out, transform 1.5s ease-out;
+
   /* Start position from top with rotation */
   transform:translateY(-100%) rotate(-65deg);
 }
@@ -796,7 +803,8 @@ body {
     transform: translate(0, 0); /* Add rotate/scale if needed */
     visibility: visible;
     opacity: 1;
-  transition: all 1.2s ease-out;
+  transition: left 1.5s ease-out, top 1.5s ease-out, transform 1.5s ease-out;
+
   /* Start position from top with rotation */
   transform:translateY(-100%) rotate(-65deg);
 }
@@ -824,7 +832,8 @@ body {
 
   pointer-events: none; /* usually shadow is not clickable */
   /* Animation properties */
-  transition: all 0.8s ease-out;
+  transition: left 1.5s ease-out, top 1.5s ease-out, transform 1.5s ease-out;
+
   /* Start position from top with rotation */
   transform:translateY(-100%) ;
 }
@@ -846,7 +855,7 @@ body {
 .sop1, .sop2, .sop3, .sop4, .sop5,
 .cup1, .cup2, .cup3, .cup4, .cup5,
 .shadow, .leaf1, .leaf2,.leaf3,.leaf4,.leaf5{
-  animation: elementSlideIn 1.5s ease-out forwards;
+  animation: elementSlideIn 2s ease-out forwards;
 }
 
 
@@ -864,22 +873,22 @@ body {
 /* Beans exit to the right toward specific position */
 @keyframes beanSlideOut {
   0% {
-    opacity: 1;
+    opacity: 0;
     transform: translate(0, 0) rotate(45deg) scale(1);
   }
   100% {
-    opacity: 0;
+    opacity: 1;
     transform: translate(400px, 100px) rotate(45deg) scale(1);
   }
 }
 
 @keyframes beenSlideOut {
   0% {
-    opacity: 1;
+    opacity: 0;
     transform: translate(0, 0) rotate(45deg) scale(1);
   }
   100% {
-    opacity: 0;
+    opacity: 1;
     transform: translate(900px, 200px) rotate(45deg) scale(1);
   }
 }
@@ -1255,14 +1264,15 @@ body {
 }
 
 .arrow {
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease;
+  transition: transform 0.3s ease;
+  fill: #333;
   
 }
 
@@ -1277,12 +1287,20 @@ body {
   }
 }
 
-.arrow svg {
-  width: 15px;
-  height: 40px;
-  fill: #333;
-  transition: fill 0.3s ease, transform 0.3s ease;
+.arrow:focus,
+.arrow:active {
+  outline: none;       /* remove blue outline */
+  border: none;        /* remove extra border flash */
+  box-shadow: none;    /* prevent glow */
+  transform: none;     /* stop size change */
 }
+
+.arrow svg:focus,
+.arrow svg:active {
+  outline: none;
+  transform: none;
+}
+
 
 .arrow:hover {
   background: transparent;
@@ -1299,7 +1317,7 @@ body {
   height: 100vh;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 1s ease;
+  transition: opacity 1s ease transform 1s ease;
 }
 
 .slide.active {

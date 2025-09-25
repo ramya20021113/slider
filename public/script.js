@@ -38,99 +38,132 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   ];
 
- function showSlide(index) {
-   if (index === currentSlide) return; // prevent duplicate clicks
-
-   const current = slides[currentSlide];
-   const next = slides[index];
-
-   // Exit current slide
-   current.classList.add("exit");
-
-   current.addEventListener(
-     "animationend",
-     () => {
-       // Hide current slide
-       current.classList.remove("active", "exit");
-
-       // Show next slide immediately
-       next.classList.add("active");
-       navDots.forEach((dot) => dot.classList.remove("active"));
-       navDots[index].classList.add("active");
-
-       updateCoffeeContent(index);
-       currentSlide = index;
-
-       // Animate right-side elements slowly (1s)
-       animateRightElements(next, 3); // pass duration in seconds
-     },
-     { once: true }
-   );
- }
-
- 
-
-
-  //next pre
-  // Select arrows
-  const prevArrow = document.querySelector(".arrow.prev");
-  const nextArrow = document.querySelector(".arrow.next");
-
-  // Prev arrow click
-  prevArrow.addEventListener("click", (e) => {
-    e.preventDefault();
-    const prevIndex = currentSlide === 0 ? slides.length - 1 : currentSlide - 1;
-    showSlide(prevIndex); // calls your existing showSlide
+  function animateBeans(slide) {
+  const beans = slide.querySelectorAll(".bean1, .bean2, .bean3, .bean22, .bean33");
+  beans.forEach(bean => {
+    // Read the final left position from the data attribute
+    const finalLeft = bean.dataset.finalLeft;
+    if (finalLeft) {
+      bean.style.left = finalLeft;
+    }
   });
-
-  // Next arrow click
-  nextArrow.addEventListener("click", (e) => {
-    e.preventDefault();
-    const nextIndex = currentSlide === slides.length - 1 ? 0 : currentSlide + 1;
-    showSlide(nextIndex); // calls your existing showSlide
-  });
-
-  //content
-
-function updateCoffeeContent(index) {
-  const items = document.querySelectorAll(".coffee-content");
-  items.forEach((item) => {
-    item.style.display = "none";
-    // Reset animations
-    const number = item.querySelector(".coffee-number");
-    const title = item.querySelector(".coffee-title");
-    const description = item.querySelector(".coffee-description");
-    const btn = item.querySelector(".order-btn");
-
-    [number, title, description, btn].forEach((el) => {
-      if (el) {
-        el.style.animation = "none"; // reset
-        void el.offsetWidth; // force reflow
-        // reapply animation
-        if (el.classList.contains("coffee-number"))
-          el.style.animation = "numberSlideIn 1s ease-out forwards";
-        if (el.classList.contains("coffee-title"))
-          el.style.animation = "titleSlideIn 1s ease-out forwards";
-        if (el.classList.contains("coffee-description"))
-          el.style.animation = "descriptionFadeIn 1s ease-out forwards";
-        if (el.classList.contains("order-btn"))
-          el.style.animation = "descriptionFadeIn 1s ease-out forwards";
-      }
-    });
-  });
-
-  // Show current slide
-  const current = items[index];
-  current.style.display = "flex";
 }
 
 
+  function showSlide(index) {
+    if (index === currentSlide) return; // prevent duplicate clicks
+
+    const current = slides[currentSlide];
+    const next = slides[index];
+
+    // Exit current slide
+    current.classList.add("exit");
+
+    current.addEventListener(
+      "animationend",
+      () => {
+        // Hide current slide
+        current.classList.remove("active", "exit");
+
+        // Show next slide immediately
+        next.classList.add("active");
+        navDots.forEach((dot) => dot.classList.remove("active"));
+        navDots[index].classList.add("active");
+
+        updateCoffeeContent(index);
+        currentSlide = index;
+
+        setTimeout(() => {
+      animateBeans(next);           // animate beans
+      animateRightElements(next);   // animate cups/spoons/leaves
+    }, 2000); // 200ms delay before starting animation
+  },
+  { once: true }
+);
+  }
+
+  function animateSlideElements(slide) {
+    const elements = slide.querySelectorAll(
+      ".bean1, .bean2, .bean3, .bean22, .bean33," +
+        ".cup1, .cup2, .cup3, .cup4, .cup5," +
+        ".sop1, .sop2, .sop3, .sop4, .sop5," +
+        ".leaf1, .leaf2, .leaf3, .leaf4, .leaf5," +
+        ".shadow"
+    );
+
+    elements.forEach((el) => {
+      const finalLeft = el.dataset.finalLeft || el.style.left;
+      const finalTop = el.dataset.finalTop || el.style.top;
+
+      requestAnimationFrame(() => {
+        el.style.left = finalLeft;
+        el.style.top = finalTop;
+        el.style.transform = "translate(0, 0) rotate(0deg)";
+      });
+    });
+  }
 
 
-//nav
+  
 
+  //next pre
+  // Select ALL prev/next arrows
+  const prevArrows = document.querySelectorAll(".arrow.prev");
+  const nextArrows = document.querySelectorAll(".arrow.next");
 
+  // Attach listeners to every prev arrow
+  prevArrows.forEach((arrow) => {
+    arrow.addEventListener("click", (e) => {
+      e.preventDefault();
+      const prevIndex =
+        currentSlide === 0 ? slides.length - 1 : currentSlide - 1;
+      showSlide(prevIndex);
+    });
+  });
 
+  // Attach listeners to every next arrow
+  nextArrows.forEach((arrow) => {
+    arrow.addEventListener("click", (e) => {
+      e.preventDefault();
+      const nextIndex =
+        currentSlide === slides.length - 1 ? 0 : currentSlide + 1;
+      showSlide(nextIndex);
+    });
+  });
+//content
+  function updateCoffeeContent(index) {
+    const items = document.querySelectorAll(".coffee-content");
+    items.forEach((item) => {
+      item.style.display = "none";
+      // Reset animations
+      const number = item.querySelector(".coffee-number");
+      const title = item.querySelector(".coffee-title");
+      const description = item.querySelector(".coffee-description");
+      const btn = item.querySelector(".order-btn");
+
+      [number, title, description, btn].forEach((el) => {
+        if (el) {
+          el.style.animation = "none"; // reset
+          void el.offsetWidth; // force reflow
+          // reapply animation
+          if (el.classList.contains("coffee-number"))
+            el.style.animation = "numberSlideIn 1s ease-out forwards";
+          if (el.classList.contains("coffee-title"))
+            el.style.animation = "titleSlideIn 1s ease-out forwards";
+          if (el.classList.contains("coffee-description"))
+            el.style.animation = "descriptionFadeIn 1s ease-out forwards";
+          if (el.classList.contains("order-btn"))
+            el.style.animation = "descriptionFadeIn 1s ease-out forwards";
+        }
+      });
+    });
+
+    // Show current slide
+    const current = items[index];
+    current.style.display = "flex";
+  }
+
+  //nav
 
   // Nav dots click
   navDots.forEach((dot, index) => {
